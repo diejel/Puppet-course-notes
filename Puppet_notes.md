@@ -1,4 +1,4 @@
-# Installation
+# Puppet Fast Course
 
 ## Previous Considerations
 - Every node must point to an NTP server in order to be sync
