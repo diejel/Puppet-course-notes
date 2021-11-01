@@ -1,12 +1,20 @@
 # Installation
 
-## PreviousConsiderations
+## Previous Considerations
 - Every node must point to an NTP server in order to be sync
-- Set the hosts file, each record must point to the IP of the nodes
-  which participates. You can use Eg:`hostnamectl set-hostname host.domain.local` 
+- Set the _hosts_ file, each record must point to the IP of the nodes
+  which participates. You can use Eg:
+  ```
+  [osboxes@puppetserver ~]$ cat /etc/hosts
+    127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+    ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+    192.168.56.101 puppetserver.example.com
+
+  ```
+  `$ sudo hostnamectl set-hostname puppetserver.example.com` 
 
 ## Master
-- For CentOS based, you can use yum for adding the repository
+- For CentOS based, you can use rpm for adding the repository
 
   Eg: `$ sudo rpm -Uvh <URL>`
 
@@ -14,7 +22,7 @@
 
 - Remember Update/Upgrade the packages on the system.
 
-- Verify the detals of the dependencies of puppet
+- List puppet related package names from repositories
 
   Eg: `$ sudo yum list | grep -i  'puppet' `
 
@@ -30,10 +38,11 @@
         puppetdb-termini.noarch                     7.7.0-1.el8                puppet7  
         puppetserver.noarch                         7.4.1-1.el8                puppet7  
 ```
-- You can now install the _server_ and it will install other dependencies for the server.
+- You can now install the _server_ and it will install other dependencies as the agent.
 
   Eg: `$ sudo yum install puppetserver.noarch `
-- After the step above, you can verify by doing
+
+- After the step above, you can verify what was installed by doing
   
   Eg: `$ sudo rpm -qa | grep -i 'puppet' `
 
@@ -46,9 +55,9 @@
 
 ```
 
-- You can verify the installed dependencies by doing the following
+- You can verify the installed information along with package version and short description by doing
   
-  Eg: `$ sudo yum -qi <package_name>`
+  Eg: `$ sudo rpm -qi <package_name>`
 
   ```
   [osboxes@osboxes ~]$ sudo rpm -qi puppetserver-7.4.1-1.el8.noarch 
@@ -72,7 +81,6 @@
     Description :
     Puppet Labs puppetserver
     Contains: Puppet Server (puppetlabs/puppetserver 7.4.1,org.clojure/clojure 1.10.1,org.bouncycastle/bcpkix-jdk15on 1.68,puppetlabs/jruby-utils 3.2.2,puppetlabs/puppetserver 7.4.1,puppetlabs/trapperkeeper-webserver-jetty9 4.2.1)
-
 
 
 ## Agent
