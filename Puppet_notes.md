@@ -14,7 +14,7 @@
   `$ sudo hostnamectl set-hostname puppetserver.example.com` 
 
 ## Master
-- For CentOS based, you can use rpm for adding the repository
+- For CentOS based, you can use rpm for upgrading/installing the package
 
   Eg: `$ sudo rpm -Uvh <URL>`
 
